@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "ghg_emission_api",
+  "name_for_human": "GHG Emission API",
+  "description_for_model": "Access and retrieve GHG emission data, including CO2e and other gases, from CleanDenki's API.",
+  "description_for_human": "Retrieve detailed GHG emission data, including CO2e, CO2, and other greenhouse gases, from CleanDenki's system.",
+  "auth": {
+    "type": "user_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://ishisak.github.io/openai-sample/openapi.yaml"
+  },
+  "logo_url": "https://ishisak.github.io/openai-sample/logo.png",
+  "contact_email": "support@cleandenki.com",
+  "legal_info_url": "https://cleandenki.com/terms"
+}
