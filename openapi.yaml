@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: GHG Emission Data API
+  version: 1.0.0
+  description: API for retrieving GHG emission data from CleanDenki.
+servers:
+  - url: https://cleandenki.com/api/v1/external
+paths:
+  /ghgemission:
+    get:
+      summary: Retrieve GHG Emission Data
+      description: Fetches GHG emission records including CO2e, CO2, and other gases data.
+      operationId: getGhgEmissionData
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: Bearer token for authentication.
+          schema:
+            type: string
+            example: "Bearer Wqc70IpfIkMURPI7E7Dh0LRkLsBJhpYJvxEmXt2FIhcJ1Fo86PVd1Rm4cEa0"
+      responses:
+        '200':
+          description: Successful response with GHG emission data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  emissions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: Unique ID for the record.
+                          example: 202093
+                        name:
+                          type: string
+                          description: Name of the emission source.
+                          example: "Test Input"
+                        trading_date:
+                          type: string
+                          format: date
+                          description: The date of the emission record.
+                          example: "2024-11-01"
+                        co2e:
+                          type: string
+                          description: Total CO2 equivalent emissions.
+                          example: "1.095824000000"
+                        co2:
+                          type: string
+                          description: Total CO2 emissions.
+                          example: "1.095824000000"
+                        ch4:
+                          type: string
+                          description: Methane emissions.
+                          example: "0.000000000000"
+                        n2o:
+                          type: string
+                          description: Nitrous oxide emissions.
+                          example: "0.000000000000"
+                        gj:
+                          type: string
+                          description: Energy in gigajoules.
+                          example: "0.000000000000"
+                        currency:
+                          type: integer
+                          description: Currency type used in the data.
+                          example: 2
+                        cost:
+                          type: string
+                          description: Associated cost.
+                          example: "10000.000000000000"
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '500':
+          description: Internal server error.
